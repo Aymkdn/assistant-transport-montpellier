@@ -28,7 +28,7 @@ AssistantTransportMontpellier.prototype.action = function(commande) {
       }
     ]
   };
-  var type = (commande.lineNumber <= 5 ? "tram" : "bus");
+  var type = (commande.lineId <= 5 ? "tram" : "bus");
   console.log("[assistant-transport-montpellier] Recherche des prochains "+type+" pour la ligne "+commande.lineId);
   return request({
     'url' : 'https://apimobile.tam-voyages.com/api/v1/hours/next/stops',
