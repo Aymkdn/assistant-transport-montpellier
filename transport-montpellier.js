@@ -52,7 +52,7 @@ AssistantTransportMontpellier.prototype.action = function(commande) {
       var speak = "le prochain "+type+" est dans " + data[idx++].waiting_time + "utes";
       if (data.length > idx) speak += ", le suivant dans " + data[idx++].waiting_time + "utes";
       if (data.length > idx) speak += ", et celui d'après dans " + data[idx++].waiting_time + "utes";
-      if (_this.plugins.notifier) _this.plugins.notifier.action(speak)
+      if (_this.plugins.notifier) return _this.plugins.notifier.action(speak)
       console.log("[assistant-transport-montpellier] "+speak);
     } else {
       console.log("[assistant-transport-montpellier] Aucun "+type+" trouvé...");
