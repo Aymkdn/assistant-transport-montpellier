@@ -54,7 +54,7 @@ AssistantTransportMontpellier.prototype.action = function(commande) {
         console.log("[assistant-transport-montpellier] Recherche des prochains "+type+" pour la ligne "+commande.lineId+" (direction "+body[0].line_direction_name+")");
         if (data[idx].waiting_time.replace(/ min/,"")*1 < commande.delay) idx++;
         while(idx < 4 && data.length > idx) {
-          if (data.length > idx) result.push({type:type, delai:data[idx++].waiting_time.replace(/(\d+).*/,"$1")});
+          if (data.length > idx) result.push({type:type, ligne:commande.lineId, delai:data[idx++].waiting_time.replace(/(\d+).*/,"$1")});
         }
       }
       return result;
@@ -78,9 +78,9 @@ AssistantTransportMontpellier.prototype.action = function(commande) {
 
     if (result.length === 0) speak = "Aucun résultat trouvé.";
     result.forEach(function(r,i) {
-      if (i === 0) speak = "le prochain "+r.type+" est dans " + r.delai + " minutes";
-      if (i === 1) speak += ", le suivant dans " + r.delai + " minutes";
-      if (i === 2) speak += ", et celui d'après dans " + r.delai + " minutes";
+      if (i === 0) speak = "le prochain "+r.type+" "+r.ligne+" est dans " + r.delai + " minutes";
+      if (i === 1) speak += ", le "+r.type+" "+r.ligne+" suivant dans " + r.delai + " minutes";
+      if (i === 2) speak += ", et le "+r.type+" "+r.ligne+" d'après dans " + r.delai + " minutes";
     })
 
     if (_this.plugins.notifier) return _this.plugins.notifier.action(speak)

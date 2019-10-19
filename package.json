@@ -1,6 +1,6 @@
 {
   "name": "assistant-transport-montpellier",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Plugin TAM (Transport de l'Agglomération de Montpellier) pour un Assistant via le package assistant-plugins",
   "author": "aymkdn",
   "main": "transport-montpellier.js",
